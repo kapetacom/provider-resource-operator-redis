@@ -1,0 +1,32 @@
+kind: core/resource-type-operator
+metadata:
+  name: kapeta/resource-type-redis
+  title: Redis
+  description: Use Redis in your plans
+  visibility: public
+spec:
+  icon:
+    type: url
+    value: https://storage.googleapis.com/kapeta-public-cdn/icons/redis.svg
+  ports:
+    - type: redis
+  local:
+    image: redis/redis-stack:7.2.0-v6
+    health:
+      cmd: redis-cli ping | grep PONG
+      interval: 5000
+    ports:
+      redis:
+        port: 6379
+        type: tcp
+      http:
+        port: 8001
+        type: http
+    mounts:
+      db: /data
+    env:
+      REDIS_ARGS: --requirepass root
+    credentials:
+      username: root
+      password: root
+
