@@ -13,7 +13,7 @@ spec:
   local:
     image: redis/redis-stack:7.2.0-v6
     health:
-      cmd: redis-cli ping | grep PONG
+      cmd: redis-cli --user default -a root ping | grep PONG
       interval: 5000
     ports:
       redis:
@@ -27,6 +27,6 @@ spec:
     env:
       REDIS_ARGS: --requirepass root
     credentials:
-      username: root
+      username: default
       password: root
 
