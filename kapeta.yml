@@ -21,7 +21,7 @@ spec:
         type: tcp
       http:
         port: 8001
-        type: http
+        type: tcp
     mounts:
       db: /data
     env:
